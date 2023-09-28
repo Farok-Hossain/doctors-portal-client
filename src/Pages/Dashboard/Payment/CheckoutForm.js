@@ -15,7 +15,7 @@ const CheckoutForm = ({appointment}) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect( () => {
-      fetch('http://localhost:5000/create-payment-intent', {
+      fetch('https://pacific-tor-25817.herokuapp.com/create-payment-intent', {
           method: 'POSt',
           headers: {
             'content-type': 'application/json'
@@ -78,10 +78,10 @@ const CheckoutForm = ({appointment}) => {
             amount: paymentIntent.amount,
             created: paymentIntent.created,
             last4: paymentMethod.card.last4,
-            transaction: paymentIntent.client_secret('_secret')[0]
+            transaction: paymentIntent.client_secret.slice('_secret')[0]
           }
 
-          const url = `http://localhost:5000/appointments/${_id}`;
+          const url = `https://pacific-tor-25817.herokuapp.com/appointments/${_id}`;
           fetch(url, {
             method: 'PUT',
             headers: {
@@ -113,7 +113,7 @@ const CheckoutForm = ({appointment}) => {
                     },
                   }}
                 />
-                { processing ? <CircularProgress></CircularProgress> : <button type="submit" disabled={!stripe}>
+                { processing ? <CircularProgress></CircularProgress> : <button type="submit" disabled={!stripe || success}>
                   Pay $ {price}
                 </button>}
             </form>

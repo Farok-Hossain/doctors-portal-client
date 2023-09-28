@@ -11,7 +11,7 @@ const Payment = () => {
     const [appointment, setAppointment] = useState({});
 
     useEffect( () => {
-        fetch(`http://localhost:5000/appointments/${appointmentId}`)
+        fetch(`https://pacific-tor-25817.herokuapp.com/appointments/${appointmentId}`)
         .then(res => res.json())
         .then(data => setAppointment(data));
     }, [appointmentId]);
@@ -39,5 +39,9 @@ export default Payment;
 4. Checkout Form
 --------------
 5. create payment method
+6. server create payment intent api
+7. Load client payment
+8. ConfirmCard payment
+9. handle user error
 
 */
